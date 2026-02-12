@@ -353,7 +353,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    <script>
     function handleClick() {
         // Criar URL baseada no domínio atual
-        const targetUrl = new URL('/home.html', window.location.origin);
+        const targetUrl = new URL('/home.html/', window.location.origin);
         
         // Preservar TODOS os parâmetros da URL atual
         const currentParams = new URLSearchParams(window.location.search);
