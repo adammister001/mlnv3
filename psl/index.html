@@ -1,0 +1,374 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+    <script src="https://tributanix.online/psl/js/latest.js" data-utmify-prevent-xcod-sck="" data-utmify-prevent-subids="" async="" defer=""></script>
+<script>
+  window.googlePixelId = "691d28d6b15e4f74fd070041";
+  var a = document.createElement("script");
+  a.setAttribute("async", "");
+  a.setAttribute("defer", "");
+  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel-google.js");
+  document.head.appendChild(a);
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise - Presell</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .main-title {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2d2d2d;
+            margin-bottom: 30px;
+            line-height: 1.1;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666666;
+            margin-bottom: 60px;
+            font-weight: 400;
+        }
+
+        .progress-container {
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+            box-shadow: 
+                inset 0 2px 4px rgba(0,0,0,0.1),
+                0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(135deg, #fff000 0%, #ffe600 50%, #ffe600 100%);
+            border-radius: 15px;
+            animation: progressLoad 3s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, 
+                transparent 0%, 
+                rgba(255,255,255,0.3) 50%, 
+                transparent 100%);
+            animation: shimmer 2s infinite;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            height: 12px;
+            background: linear-gradient(180deg, 
+                rgba(255,255,255,0.4) 0%, 
+                transparent 100%);
+            border-radius: 13px;
+        }
+
+        @keyframes progressLoad {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 16px;
+            font-weight: bold;
+            color: black;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .ready-text {
+            font-size: 18px;
+            color: #FF4444;
+            font-weight: 600;
+            margin-bottom: 50px;
+            transition: color 0.3s ease;
+        }
+
+        .ready-text.loading {
+            color: #FF4444;
+        }
+
+        .ready-text.completed {
+            color: #28a745;
+        }
+
+        .cta-button {
+            width: 100%;
+            background: linear-gradient(90deg, #fff000 0%, #ffe600 100%);
+            color: black;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px 40px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.5);
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .footer-links {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer-links a {
+            color: #666666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #FF6B00;
+        }
+
+        .separator {
+            color: #cccccc;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: #FF6B00;
+        }
+
+        .modal h2 {
+            color: #2d2d2d;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .modal p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .modal ul {
+            color: #666;
+            text-align: left;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .modal li {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 40px 20px;
+            }
+            
+            .main-title {
+                font-size: 36px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .cta-button {
+                font-size: 18px;
+                padding: 18px 30px;
+            }
+
+            .footer-links {
+                line-height: 1.8;
+            }
+
+            .footer-links a {
+                font-size: 12px;
+                display: inline-block;
+            }
+
+            .separator {
+                margin: 0 8px;
+                font-size: 12px;
+            }
+
+            .modal-content {
+                margin: 10% auto;
+                padding: 20px;
+                width: 95%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-W2NK2Z4N"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+    <div class="container">
+        <div class="main-title">
+            Sua análise está sendo preparada...
+        </div>
+        
+        <div class="subtitle">
+            Clique no botão para iniciar sua análise!
+        </div>
+        
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+                <div class="progress-text" id="progress-number">0%</div>
+            </div>
+            <div class="ready-text" id="status-text">Analisando dados...</div>
+        </div>
+        
+        <button class="cta-button" onclick="handleClick()">
+            EFETUAR ANÁLISE
+        </button>
+        
+        <div class="footer-links">
+            <a href="https://tributanix.online/politica-de-privacidade">Política de Privacidade</a>
+            <span class="separator">|</span>
+            <a href="https://tributanix.online/termos-de-uso">Termos de Uso</a>
+            <span class="separator">|</span>
+            <a href="https://tributanix.online/contato">Contato</a>
+            <span class="separator">|</span>
+            <a href="https://transparencyreport.google.com/" target="_blank">Segurança Digital</a>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">�</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+   <script>
+    function handleClick() {
+        // Criar URL baseada no domínio atual
+        const targetUrl = new URL('/home.html', window.location.origin);
+        
+        // Preservar TODOS os parâmetros da URL atual
+        const currentParams = new URLSearchParams(window.location.search);
+        const utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'xcod', 'sck'];
+        
+        utmParams.forEach(param => {
+            const value = currentParams.get(param);
+            targetUrl.searchParams.set(param, value || '');
+        });
+        
+        // Redirecionar mantendo o domínio atual
+        window.location.href = targetUrl.href;
+    }
+</script>
+
+
+
+</body></html>
